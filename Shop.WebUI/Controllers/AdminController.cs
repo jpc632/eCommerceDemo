@@ -36,12 +36,7 @@ namespace Shop.WebUI.Controllers
         public IActionResult GetProduct(int id) => Ok(_getProductService.Do(id));
 
         [HttpGet]
-        //public IActionResult GetProducts() => Ok(_getProductsService.Do());
-        public IEnumerable<ProductViewModel> GetProducts()
-        {
-            var res = _getProductsService.Do();
-            return res;
-        }
+        public IActionResult GetProducts() => Ok(_getProductsService.Do());
 
         [HttpPost]
         public IActionResult CreateProduct(ProductViewModel product) => Ok(_createProductService.Do(product));
