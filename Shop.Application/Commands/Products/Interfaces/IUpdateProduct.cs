@@ -1,9 +1,10 @@
 ﻿using Shop.Application.ViewModels;
+using System.Threading.Tasks;
 
 namespace Shop.Application.Commands.Products.Interfaces
 {
-    public interface IGetProduct
+    public interface IUpdateProduct
     {
-        ProductViewModel Do(int id);
+        Task Do(ProductViewModel product);
     }
 }

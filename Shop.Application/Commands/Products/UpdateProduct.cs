@@ -1,4 +1,6 @@
-﻿using Shop.Infastructure.Persistence;
+﻿using Shop.Application.Commands.Products.Interfaces;
+using Shop.Infastructure.Persistence;
+using Shop.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Commands.Products
 {
-    public class UpdateProduct
+    public class UpdateProduct : IUpdateProduct
     {
         private readonly ApplicationDbContext _context;
 
@@ -16,9 +18,9 @@ namespace Shop.Application.Commands.Products
             _context = context;
         }
 
-        public async Task Do(int id)
+        public async Task Do(ProductViewModel product)
         {
-            
+
         }
     }
 }
