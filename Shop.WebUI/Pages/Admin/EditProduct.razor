@@ -1,0 +1,66 @@
+﻿@page "/Admin/EditProduct/{Id}"
+
+@using Shop.Domain.Models
+@using Shop.WebUI.Services
+
+@inject IHttpService HttpService
+@inject NavigationManager NavigationManager
+
+<h3>Edit Product</h3>
+<hr />
+
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <input hidden form="Name" class="form-control" @bind="@product.Id" />
+            </div>
+            <div class="form-group">
+                <label for="Name" class="control-label">Name</label>
+                <input form="Name" class="form-control" @bind="@product.Name" />
+            </div>
+            <div class="form-group">
+                <label for="Description" class="control-label">Description</label>
+                <input form="Description" class="form-control" @bind="@product.Description" />
+            </div>
+            <div class="form-group">
+                <label for="Value" class="control-label">Value</label>
+                <input form="Value" class="form-control" @bind="@product.Value" />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@Update" value="Update" />
+                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code
+{
+    [Parameter]
+    public string Id { get; set; }
+
+    Product product = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await HttpService.GetAsync<Product>($"Admin/{Id}");
+    }
+
+    protected async void Update()
+    {
+        await HttpService.UpdateAsync<Product>($"Admin/{product.Id}", product);
+        NavigationManager.NavigateTo("/Admin/Products");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/Admin/Products");
+    }
+}
