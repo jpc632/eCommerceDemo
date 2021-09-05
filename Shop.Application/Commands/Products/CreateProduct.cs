@@ -1,7 +1,7 @@
 ﻿using Shop.Application.Commands.Products.Interfaces;
 using Shop.Domain.Models;
 using Shop.Infastructure.Persistence;
-using Shop.Application.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace Shop.Application.Commands.Products
             _context = context;
         }
 
-        public async Task Do(ProductViewModel vm)
+        public async Task Do(Product vm)
         {
             _context.Add(new Product
             {

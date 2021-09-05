@@ -1,6 +1,7 @@
 ﻿using Shop.Application.Commands.Products.Interfaces;
+using Shop.Domain.Models;
 using Shop.Infastructure.Persistence;
-using Shop.Application.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,10 @@ namespace Shop.Application.Commands.Products
             _context = context;
         }
 
-        public ProductViewModel Do(int id) =>
-            _context.Products.Where(x => x.Id == id).Select(x => new ProductViewModel
+        public Product Do(int id) =>
+            _context.Products.Where(x => x.Id == id).Select(x => new Product
             {
+                Id = x.Id,
                 Name = x.Name,
                 Description = x.Description,
                 Value = x.Value

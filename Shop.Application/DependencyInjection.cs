@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Commands.Products;
 using Shop.Application.Commands.Products.Interfaces;
+using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace Shop.Application
             services.AddScoped<ICreateProduct, CreateProduct>();
             services.AddScoped<IDeleteProduct, DeleteProduct>();
             services.AddScoped<IUpdateProduct, UpdateProduct>();
+
+            services.AddScoped<Product>();
         }
     }
 }

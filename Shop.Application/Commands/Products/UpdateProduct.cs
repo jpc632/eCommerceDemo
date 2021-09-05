@@ -1,6 +1,7 @@
 ﻿using Shop.Application.Commands.Products.Interfaces;
+using Shop.Domain.Models;
 using Shop.Infastructure.Persistence;
-using Shop.Application.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,15 @@ namespace Shop.Application.Commands.Products
             _context = context;
         }
 
-        public async Task Do(ProductViewModel product)
+        public async Task Do(Product vm)
         {
+            var product = _context.Products.FirstOrDefault(x => x.Id == vm.Id);
 
+            product.Name = vm.Name;
+            product.Description = vm.Description;
+            product.Value = vm.Value;
+
+            await _context.SaveChangesAsync();
         }
     }
 }

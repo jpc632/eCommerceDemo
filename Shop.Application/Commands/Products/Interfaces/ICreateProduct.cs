@@ -1,4 +1,5 @@
-﻿using Shop.Application.ViewModels;
+﻿
+using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Shop.Application.Commands.Products.Interfaces
 {
     public interface ICreateProduct
     {
-        Task Do(ProductViewModel product);
+        Task Do(Product product);
     }
 }

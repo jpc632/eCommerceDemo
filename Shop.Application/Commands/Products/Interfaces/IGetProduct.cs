@@ -1,9 +1,11 @@
-﻿using Shop.Application.ViewModels;
+﻿
+
+using Shop.Domain.Models;
 
 namespace Shop.Application.Commands.Products.Interfaces
 {
     public interface IGetProduct
     {
-        ProductViewModel Do(int id);
+        Product Do(int id);
     }
 }
