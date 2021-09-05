@@ -57,6 +57,15 @@ namespace Shop.WebUI.Services
             return await JsonSerializer.DeserializeAsync<T>(responseStream);
         }
 
+        public async Task UpdateAsync<T>(string addressExtension, T model)
+        {
+            var content = new StringContent(JsonSerializer.Serialize<T>(model), Encoding.UTF8, "application/json");
+            var request = BuildRequest(addressExtension, HttpMethod.Put, content);
+
+            var client = _clientFactory.CreateClient();
+            await client.SendAsync(request);
+        }
+
         public async Task DeleteAsync(string addressExtension)
         {
             var request = BuildRequest(addressExtension, HttpMethod.Delete);

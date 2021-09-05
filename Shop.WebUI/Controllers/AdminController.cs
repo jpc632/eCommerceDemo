@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Commands.Products.Interfaces;
-using Shop.Application.ViewModels;
+using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +39,12 @@ namespace Shop.WebUI.Controllers
         public IActionResult GetProducts() => Ok(_getProductsService.Do());
 
         [HttpPost]
-        public IActionResult CreateProduct(ProductViewModel product) => Ok(_createProductService.Do(product));
+        public IActionResult CreateProduct([FromBody] Product product) => Ok(_createProductService.Do(product));
 
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id) => Ok(_deleteProductService.Do(id));
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProduct(ProductViewModel product) => Ok(_updateProductService.Do(product));
+        public IActionResult UpdateProduct([FromBody] Product product) => Ok(_updateProductService.Do(product));
     }
 }
